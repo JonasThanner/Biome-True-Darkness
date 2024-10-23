@@ -57,6 +57,7 @@ public class Darkness {
 	static boolean darkSkyless;
 	static boolean blockLightOnly;
 	static boolean ignoreMoonPhase;
+	static boolean gradualMoonPhaseDarkness;
 	static boolean invertBiomeDarkness;
 	static float endBrightnessIncrease;
 	static float netherBrightnessIncrease;
@@ -98,6 +99,7 @@ public class Darkness {
 		//Load Normal Config Values from Neoforge Config
 		DarknessConfig darknessConfig = DarknessConfig.storedConfig.getLeft();
 		ignoreMoonPhase = darknessConfig.ignore_moon_phase.getAsBoolean();
+		gradualMoonPhaseDarkness = darknessConfig.gradual_moon_phase_darkness.getAsBoolean();
 		blockLightOnly = darknessConfig.only_affect_block_light.getAsBoolean();
 		darkOverworld = darknessConfig.dark_overworld.getAsBoolean();
 		darkDefault = darknessConfig.dark_default.getAsBoolean();
@@ -186,7 +188,8 @@ public class Darkness {
 				if (angle > 0.25f && angle < 0.75f) {
 					final float oldWeight = Math.max(0, (Math.abs(angle - 0.5f) - 0.2f)) * 20;
 					final float moon = ignoreMoonPhase ? 0 : world.getMoonBrightness();
-					return Mth.lerp(oldWeight * oldWeight * oldWeight, moon * moon, 1f);
+					final float moonBrightness = gradualMoonPhaseDarkness ? moon : moon * moon;
+					return Mth.lerp(oldWeight * oldWeight * oldWeight, moonBrightness, 1f);
 				} else {
 					return 1;
 				}

@@ -10,6 +10,7 @@ public class DarknessConfig
     public final static ModConfigSpec modConfigSpec;
     public final ModConfigSpec.BooleanValue only_affect_block_light;
     public final ModConfigSpec.BooleanValue ignore_moon_phase;
+    public final ModConfigSpec.BooleanValue gradual_moon_phase_darkness;
     public final ModConfigSpec.BooleanValue dark_overworld;
     public final ModConfigSpec.BooleanValue dark_default;
     public final ModConfigSpec.BooleanValue dark_nether;
@@ -35,6 +36,9 @@ public class DarknessConfig
 
         ignore_moon_phase = builder.comment("Ignore Moon Phase")
                 .define("ignore_moon_phase", false);
+
+        gradual_moon_phase_darkness = builder.comment("Gradual Moon Phase Darkness")
+                .define("gradual_moon_phase_darkness", false);
 
         dark_overworld = builder.comment("Should the Overworld have True Darkness")
                 .define("dark_overworld", true);
