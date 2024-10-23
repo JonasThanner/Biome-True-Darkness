@@ -1,0 +1,35 @@
+{
+	"config.darkness.title" : "True Darkness Config",
+	
+	"config.darkness.only_affect_block_light": "Affect Block Light Only",
+
+	"config.darkness.ignore_moon_phase": "Ignore Moon Phase",
+
+	"config.darkness.gradual_moon_phase_darkness": "Gradual Moon Phase",
+
+	"config.darkness.dark_overworld": "Dark overworld",
+
+	"config.darkness.dark_default": "Dark default",
+
+	"config.darkness.dark_nether": "Dark nether",
+
+	"config.darkness.dark_nether_fog": "Dark nether fog",
+
+	"config.darkness.dark_end": "Dark end",
+
+	"config.darkness.dark_end_fog": "Dark end fog",
+
+	"config.darkness.dark_skyless": "Dark skyless dims",
+
+	"config.darkness.invert_biome_darkness": "Invert biome darkness",
+
+	"config.darkness.increase_overworld_brightness": "Increased overworld brightness",
+
+	"config.darkness.increase_nether_brightness": "Increased nether brightness",
+
+	"config.darkness.increase_end_brightness": "Increased end brightness",
+
+	"config.darkness.increase_skyless_brightness": "Increased skyless brightness",
+
+	"config.darkness.increase_default_brightness": "Increased default brightness"
+}
