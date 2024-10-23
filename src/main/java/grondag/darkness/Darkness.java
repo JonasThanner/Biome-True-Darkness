@@ -58,6 +58,11 @@ public class Darkness {
 	static boolean blockLightOnly;
 	static boolean ignoreMoonPhase;
 	static boolean invertBiomeDarkness;
+	static float endBrightnessIncrease;
+	static float netherBrightnessIncrease;
+	static float skylessBrightnessIncrease;
+	static float defaultBrightnessIncrease;
+	static float overworldBrightnessIncrease;
 	public static JsonObject darknessBiomes;
 
 	//Because we dont want instant turning off/on of the true darkness we slowly fade it in
@@ -102,6 +107,13 @@ public class Darkness {
 		invertBiomeDarkness = darknessConfig.invert_biome_darkness.getAsBoolean();
 		darkNetherFogConfigured = darknessConfig.dark_nether_fog.getAsDouble();
 		darkEndFogConfigured = darknessConfig.dark_end_fog.getAsDouble();
+
+		//Brightness increases
+		overworldBrightnessIncrease = (float) darknessConfig.overworld_brightness_increase.getAsDouble();
+		defaultBrightnessIncrease = (float) darknessConfig.default_brightness_increase.getAsDouble();
+		netherBrightnessIncrease = (float) darknessConfig.nether_brightness_increase.getAsDouble();
+		endBrightnessIncrease = (float) darknessConfig.end_brightness_increase.getAsDouble();
+		skylessBrightnessIncrease = (float) darknessConfig.skyless_brightness_increase.getAsDouble();
 
 		computeConfigValues();
 
@@ -269,7 +281,27 @@ public class Darkness {
 						blockFactor = 1 - blockFactor * blockFactor * blockFactor * blockFactor;
 					}
 
-					blockFactor = blockFactor + (1 - (biomeFadeInAlpha / 100)) * (1 - blockFactor);
+					float blockIncreaseFac = 0.0f;
+					if(world.dimension() == Level.NETHER)
+					{
+						blockIncreaseFac = netherBrightnessIncrease;
+					} else if (world.dimension() == Level.END)
+					{
+						blockIncreaseFac = endBrightnessIncrease;
+					} else if (!dim.hasSkyLight())
+					{
+						blockIncreaseFac = skylessBrightnessIncrease;
+					} else if (world.dimension() == Level.OVERWORLD)
+					{
+						blockIncreaseFac = overworldBrightnessIncrease;
+					}
+					else
+					{
+						blockIncreaseFac = defaultBrightnessIncrease;
+					}
+
+					blockFactor = blockFactor + (1 - (biomeFadeInAlpha / 100)) * (1 - blockFactor) + (blockIncreaseFac * (1 - blockFactor));
+					blockFactor = (float) Math.max(0.0f, Math.min(1.0, blockFactor));
 					final float blockBase = blockFactor * LightTexture.getBrightness(dim, blockIndex) * (prevFlicker * 0.1F + 1.5F);
 					min = 0.4f * blockFactor;
 					final float blockGreen = blockBase * ((blockBase * (1 - min) + min) * (1 - min) + min);

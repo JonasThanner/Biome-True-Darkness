@@ -18,6 +18,11 @@ public class DarknessConfig
     public final ModConfigSpec.DoubleValue dark_end_fog;
     public final ModConfigSpec.BooleanValue dark_skyless;
     public final ModConfigSpec.BooleanValue invert_biome_darkness;
+    public final ModConfigSpec.DoubleValue nether_brightness_increase;
+    public final ModConfigSpec.DoubleValue end_brightness_increase;
+    public final ModConfigSpec.DoubleValue overworld_brightness_increase;
+    public final ModConfigSpec.DoubleValue default_brightness_increase;
+    public final ModConfigSpec.DoubleValue skyless_brightness_increase;
 
 
 
@@ -54,6 +59,22 @@ public class DarknessConfig
 
         invert_biome_darkness = builder.comment("Should the Darkness Biome behavior be inverted? Aka should biomes in the json be the only dark ones instead of the only bright ones?")
                 .define("invert_biome_darkness", false);
+
+        overworld_brightness_increase = builder.comment("Should the Darkness Biome behavior be inverted? Aka should biomes in the json be the only dark ones instead of the only bright ones?")
+                .defineInRange("increase_overworld_brightness", 0.0, 0, 1);
+
+        nether_brightness_increase = builder.comment("Should the Darkness Biome behavior be inverted? Aka should biomes in the json be the only dark ones instead of the only bright ones?")
+                .defineInRange("increase_nether_brightness", 0.0, 0, 1);
+
+        end_brightness_increase = builder.comment("Should the Darkness Biome behavior be inverted? Aka should biomes in the json be the only dark ones instead of the only bright ones?")
+                .defineInRange("increase_end_brightness", 0.0, 0, 1);
+
+        skyless_brightness_increase = builder.comment("Should the Darkness Biome behavior be inverted? Aka should biomes in the json be the only dark ones instead of the only bright ones?")
+                .defineInRange("increase_skyless_brightness", 0.0, 0, 1);
+
+        default_brightness_increase = builder.comment("Should the Darkness Biome behavior be inverted? Aka should biomes in the json be the only dark ones instead of the only bright ones?")
+                .defineInRange("increase_default_brightness", 0.0, 0, 1);
+
 
     }
 
