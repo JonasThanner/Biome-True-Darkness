@@ -6,6 +6,9 @@
 	
 	"config.darkness.label.ignore_moon_phase": "Ignore Moon Phase",
 	"config.darkness.help.ignore_moon_phase": "Night is truly dark even when the moon is full",
+
+	"config.darkness.label.gradual_moon_phase_darkness": "Gradual Moon Phase Darkness",
+	"config.darkness.help.gradual_moon_phase_darkness": "Nights get darker more gradually as moon changes phase",
 	
 	"config.darkness.label.dark_overworld": "Dark Overworld",
 	"config.darkness.help.dark_overworld": "Enable in Overworld",

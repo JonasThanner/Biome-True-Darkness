@@ -34,6 +34,7 @@ public class DarknessConfigScreen extends Screen {
 
 	protected Checkbox blockLightOnlyWidget;
 	protected Checkbox ignoreMoonPhaseWidget;
+	protected Checkbox gradualMoonPhaseDarkness;
 	protected Checkbox darkOverworldWidget;
 	protected Checkbox darkNetherWidget;
 	protected Checkbox darkEndWidget;
@@ -57,7 +58,7 @@ public class DarknessConfigScreen extends Screen {
 
 	@Override
 	protected void init() {
-		int i = 27;
+		int i = 23;
 		blockLightOnlyWidget = new Checkbox(width / 2 - 100, i, 200, 20, Component.translatable("config.darkness.label.block_light_only"), Darkness.blockLightOnly) {
 			@Override
 			public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
@@ -69,7 +70,7 @@ public class DarknessConfigScreen extends Screen {
 			}
 		};
 
-		i += 27;
+		i += 23;
 
 		ignoreMoonPhaseWidget = new Checkbox(width / 2 - 100, i, 200, 20, Component.translatable("config.darkness.label.ignore_moon_phase"), Darkness.ignoreMoonPhase) {
 			@Override
@@ -82,7 +83,20 @@ public class DarknessConfigScreen extends Screen {
 			}
 		};
 
-		i += 27;
+		i += 23;
+
+		gradualMoonPhaseDarkness = new Checkbox(width / 2 - 100, i, 200, 20, Component.translatable("config.darkness.label.gradual_moon_phase_darkness"), Darkness.gradualMoonPhaseDarkness) {
+			@Override
+			public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+				super.renderWidget(guiGraphics, mouseX, mouseY, delta);
+
+				if (isHovered) {
+					guiGraphics.renderTooltip(DarknessConfigScreen.this.minecraft.font, Component.translatable("config.darkness.help.gradual_moon_phase_darkness"), mouseX, mouseY);
+				}
+			}
+		};
+
+		i += 23;
 
 		darkOverworldWidget = new Checkbox(width / 2 - 100, i, 200, 20, Component.translatable("config.darkness.label.dark_overworld"), Darkness.darkOverworld) {
 			@Override
@@ -95,7 +109,7 @@ public class DarknessConfigScreen extends Screen {
 			}
 		};
 
-		i += 27;
+		i += 23;
 
 		darkNetherWidget = new Checkbox(width / 2 - 100, i, 200, 20, Component.translatable("config.darkness.label.dark_nether"), Darkness.darkNether) {
 			@Override
@@ -108,7 +122,7 @@ public class DarknessConfigScreen extends Screen {
 			}
 		};
 
-		i += 27;
+		i += 23;
 
 		darkEndWidget = new Checkbox(width / 2 - 100, i, 200, 20, Component.translatable("config.darkness.label.dark_end"), Darkness.darkEnd) {
 			@Override
@@ -121,7 +135,7 @@ public class DarknessConfigScreen extends Screen {
 			}
 		};
 
-		i += 27;
+		i += 23;
 
 		darkDefaultWidget = new Checkbox(width / 2 - 100, i, 200, 20, Component.translatable("config.darkness.label.dark_default"), Darkness.darkDefault) {
 			@Override
@@ -134,7 +148,7 @@ public class DarknessConfigScreen extends Screen {
 			}
 		};
 
-		i += 27;
+		i += 23;
 
 		darkSkylessWidget = new Checkbox(width / 2 - 100, i, 200, 20, Component.translatable("config.darkness.label.dark_skyless"), Darkness.darkSkyless) {
 			@Override
@@ -147,10 +161,11 @@ public class DarknessConfigScreen extends Screen {
 			}
 		};
 
-		i += 27;
+		i += 23;
 
 		addRenderableWidget(blockLightOnlyWidget);
 		addRenderableWidget(ignoreMoonPhaseWidget);
+		addRenderableWidget(gradualMoonPhaseDarkness);
 		addRenderableWidget(darkOverworldWidget);
 		addRenderableWidget(darkNetherWidget);
 		addRenderableWidget(darkEndWidget);
@@ -160,6 +175,7 @@ public class DarknessConfigScreen extends Screen {
 		addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, (buttonWidget) -> {
 			Darkness.blockLightOnly = blockLightOnlyWidget.selected();
 			Darkness.ignoreMoonPhase = ignoreMoonPhaseWidget.selected();
+			Darkness.gradualMoonPhaseDarkness = gradualMoonPhaseDarkness.selected();
 			Darkness.darkOverworld = darkOverworldWidget.selected();
 			Darkness.darkNether = darkNetherWidget.selected();
 			Darkness.darkEnd = darkEndWidget.selected();
@@ -167,7 +183,7 @@ public class DarknessConfigScreen extends Screen {
 			Darkness.darkSkyless = darkSkylessWidget.selected();
 			Darkness.saveConfig();
 			minecraft.setScreen(parent);
-		}).bounds(width / 2 - 100, height - 27, 200, 20).build());
+		}).bounds(width / 2 - 100, height - 23, 200, 20).build());
 	}
 
 	@Override
