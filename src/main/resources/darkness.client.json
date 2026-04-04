@@ -3,6 +3,7 @@
   "minVersion": "0.8",
   "package": "grondag.darkness.mixin",
   "compatibilityLevel": "JAVA_17",
+  "refmap": "darkness.refmap.json",
   "mixins": [
     "MixinGameRenderer",
 	"MixinLightTexture",

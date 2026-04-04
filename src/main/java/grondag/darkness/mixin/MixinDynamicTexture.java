@@ -37,7 +37,7 @@ import grondag.darkness.TextureAccess;
 
 @Mixin(DynamicTexture.class)
 public class MixinDynamicTexture implements TextureAccess {
-	@Shadow
+	@Shadow(aliases = {"f_117984_", "pixels"})
 	NativeImage pixels;
 
 	private boolean enableHook = false;
